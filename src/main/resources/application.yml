@@ -1,0 +1,18 @@
+server:
+    port: 80
+    tomcat:
+        uri-encoding: utf-8
+spring:
+    datasource:
+        driver-class-name: com.mysql.jdbc.Driver
+        url: jdbc:mysql://120.78.164.163:3306/myplay?useUnicode=true&characterEncoding=utf-8
+        username: root
+        password: 949118Aa``
+    freemarker:
+        template-loader-path: classpath:/templates/
+        charset: utf-8
+        cache: false
+        expose-request-attributes: true
+        expose-session-attributes: true
+        expose-spring-macro-helpers: true
+        suffix: .ftl

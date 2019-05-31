@@ -58,6 +58,12 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-starter-freemarker</artifactId>
             </dependency>
+
+            <!-- mybatis的分页插件 -->
+            <!--<dependency>-->
+                <!--<groupId>com.github.pagehelper</groupId>-->
+                <!--<artifactId>pagehelper</artifactId>-->
+            <!--</dependency>-->
         </dependencies>
 
     <build>
@@ -65,6 +71,16 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+            <!-- SQL 执行性能分析，开发环境使用，线上不推荐。 maxTime 指的是 sql 最大执行时长 -->
+            <plugin interceptor="com.baomidou.mybatisplus.extension.plugins.PerformanceInterceptor">
+                <property name="maxTime" value="100" />
+                <!--SQL是否格式化 默认false-->
+                <property name="format" value="true" />
+            </plugin>
+            <plugin interceptor="com.baomidou.mybatisplus.extension.plugins.PaginationInterceptor">
+                <property name="sqlParser" ref="" />
+                <property name="dialectClazz" value="" />
             </plugin>
         </plugins>
     </build>
