@@ -3,9 +3,12 @@ package cn.myplay.service.impl;
 import cn.myplay.entity.User;
 import cn.myplay.mapper.UserMapper;
 import cn.myplay.service.IUserService;
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 
 /**
  * <p>
@@ -21,8 +24,12 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
     UserMapper userMapper;
 
     @Override
-    public User findByName(String name) {
+    public User findByName(String id) {
+        if(StringUtils.isEmpty(id)){
+            return null;
+        }
 
-        return userMapper.selectById(name);
+        return this.getById(id);
     }
+
 }

@@ -2,7 +2,9 @@ package cn.myplay.common;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @Auther: ymfa
@@ -12,12 +14,38 @@ import java.util.List;
 public class ResultDto<T> implements Serializable {
     private Integer total;
     private List<T> rows;
+    private Object data;
     private String message;
+    private Boolean success;
+    private Map map = new HashMap();
+    public static ResultDto errorDto = new ResultDto(false);
 
+
+    public ResultDto (Boolean res){
+        this.success = res;
+        if(res == true){
+            this.message = "操作成功";
+        }else{
+            this.message = "操作失败";
+        }
+    }
+    public static ResultDto dataInstance(Object obj){
+        ResultDto dto;
+        if(obj == null){
+            dto = error("获取数据失败");
+        }else{
+            dto = success("");
+        }
+        return dto;
+    }
     public static ResultDto success(String message){
         ResultDto dto = new ResultDto();
         dto.setMessage(message);
         return dto;
+    }
+    public static ResultDto error(String message){
+        errorDto.setMessage(message);
+        return errorDto;
     }
 
     public String getMessage() {
@@ -76,5 +104,28 @@ public class ResultDto<T> implements Serializable {
         return this;
     }
 
+    public Boolean getSuccess() {
+        return success;
+    }
 
+    public void setSuccess(Boolean success) {
+        this.success = success;
+    }
+
+    public Map getMap() {
+        return map;
+    }
+
+    public void setMap(Map map) {
+        this.map = map;
+    }
+
+    public Object getData() {
+        return data;
+    }
+
+    public ResultDto setData(Object data) {
+        this.data = data;
+        return this;
+    }
 }

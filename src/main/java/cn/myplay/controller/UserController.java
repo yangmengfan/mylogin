@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
@@ -57,30 +58,4 @@ public class UserController {
         return ResultDto.success("成功注销！");
     }
 
-    /**
-     * 登陆
-     *
-     * @param username 用户名
-     * @param password 密码
-     */
-    @RequestMapping(value = "/login", method = RequestMethod.POST)
-    public ResultDto login(String username, String password) {
-        // 从SecurityUtils里边创建一个 subject
-        Subject subject = SecurityUtils.getSubject();
-        // 在认证提交前准备 token（令牌）
-        UsernamePasswordToken token = new UsernamePasswordToken(username, password);
-        // 执行认证登陆
-        subject.login(token);
-        //根据权限，指定返回数据
-        QueryWrapper<User> queryWrapper = new QueryWrapper<>();
-        queryWrapper.eq("name",username);
-        String role = userMapper.selectOne(queryWrapper).getRole();
-        if ("user".equals(role)) {
-            return ResultDto.success("欢迎登陆");
-        }
-        if ("admin".equals(role)) {
-            return ResultDto.success("欢迎来到管理员页面");
-        }
-        return ResultDto.success("权限错误！");
-    }
 }

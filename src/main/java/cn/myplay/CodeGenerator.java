@@ -10,6 +10,7 @@ import com.baomidou.mybatisplus.generator.config.po.TableInfo;
 import com.baomidou.mybatisplus.generator.config.rules.NamingStrategy;
 import com.baomidou.mybatisplus.generator.engine.FreemarkerTemplateEngine;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -77,13 +78,52 @@ public class CodeGenerator {
             }
         };
 
-        // 如果模板引擎是 freemarker
-        String templatePath = "/templates/mapper.xml.ftl";
-        // 如果模板引擎是 velocity
-        // String templatePath = "/templates/mapper.xml.vm";
 
+        // 自定义controller的代码模板
+        String templatePath = "templates/customize/serviceImpl2.java.ftl";
         // 自定义输出配置
         List<FileOutConfig> focList = new ArrayList<>();
+        // 自定义配置会被优先输出
+        focList.add(new FileOutConfig(templatePath) {
+            @Override
+            public String outputFile(TableInfo tableInfo) {
+                // 自定义输出文件名 + pc.getModuleName()
+                return projectPath + "/src/main/java/cn/myplay/service/impl/"
+                        + "/" + tableInfo.getEntityName() + "ServiceImpl" + StringPool.DOT_JAVA;
+            }
+        });
+
+        //自定义service模板
+        templatePath = "templates/customize/service2.java.ftl";
+        focList.add(new FileOutConfig(templatePath) {
+            @Override
+            public String outputFile(TableInfo tableInfo) {
+                // 自定义输出文件名 + pc.getModuleName()
+                return projectPath + "/src/main/java/cn/myplay/service/"
+                        + "I" + tableInfo.getEntityName() + "Service" + StringPool.DOT_JAVA;
+            }
+        });
+        //自定义controller模板
+        templatePath = "templates/customize/controller2.java.ftl";
+        focList.add(new FileOutConfig(templatePath) {
+            @Override
+            public String outputFile(TableInfo tableInfo) {
+                // 自定义输出文件名 + pc.getModuleName()
+                return projectPath + "/src/main/java/cn/myplay/controller/"
+                         + tableInfo.getEntityName() + "Controller" + StringPool.DOT_JAVA;
+            }
+        });
+
+
+        // 如果模板引擎是 freemarker
+        templatePath = "/templates/mapper.xml.ftl";
+        // 如果模板引擎是 velocity
+        // String templatePath = "/templates/mapper.xml.vm";
+        // 配置模板
+        TemplateConfig templateConfig = new TemplateConfig();
+        templateConfig.setXml(null);
+        mpg.setTemplate(templateConfig);
+        // 自定义输出配置
         // 自定义配置会被优先输出
         focList.add(new FileOutConfig(templatePath) {
             @Override
@@ -93,30 +133,9 @@ public class CodeGenerator {
                         + "/" + tableInfo.getEntityName() + "Mapper" + StringPool.DOT_XML;
             }
         });
-        /*
-        cfg.setFileCreate(new IFileCreate() {
-            @Override
-            public boolean isCreate(ConfigBuilder configBuilder, FileType fileType, String filePath) {
-                // 判断自定义文件夹是否需要创建
-                checkDir("调用默认方法创建的目录");
-                return false;
-            }
-        });
-        */
+
         cfg.setFileOutConfigList(focList);
         mpg.setCfg(cfg);
-
-        // 配置模板
-        TemplateConfig templateConfig = new TemplateConfig();
-
-        // 配置自定义输出模板
-        //指定自定义模板路径，注意不要带上.ftl/.vm, 会根据使用的模板引擎自动识别
-        // templateConfig.setEntity("templates/entity2.java");
-        // templateConfig.setService();
-        // templateConfig.setController();
-
-        templateConfig.setXml(null);
-        mpg.setTemplate(templateConfig);
 
         // 策略配置
         StrategyConfig strategy = new StrategyConfig();
