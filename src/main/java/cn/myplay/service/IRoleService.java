@@ -11,7 +11,7 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 * </p>
 *
 * @author yangmf
-* @since 2019-06-10
+* @since 2019-06-11
 */
 
 public interface IRoleService extends IService<Role> {
@@ -22,7 +22,7 @@ public interface IRoleService extends IService<Role> {
 
     public boolean updateById(Role role);
 
-    public Role getById(String id);
+    public Role selectById(String id);
 
     public IPage<Role> queryPage(Page page, Role Role);
 

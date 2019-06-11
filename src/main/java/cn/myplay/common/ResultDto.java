@@ -34,7 +34,8 @@ public class ResultDto<T> implements Serializable {
         if(obj == null){
             dto = error("获取数据失败");
         }else{
-            dto = success("");
+            dto = success("获取数据成功");
+            dto.setData(obj);
         }
         return dto;
     }

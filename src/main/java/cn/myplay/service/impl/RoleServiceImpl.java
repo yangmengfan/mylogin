@@ -16,7 +16,7 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 * </p>
 *
 * @author yangmf
-* @since 2019-06-10
+* @since 2019-06-11
 */
 @Service
 public class RoleServiceImpl extends ServiceImpl<RoleMapper, Role> implements IRoleService {
@@ -42,7 +42,7 @@ public class RoleServiceImpl extends ServiceImpl<RoleMapper, Role> implements IR
     }
 
     @Override
-    public Role getById(String id){
+    public Role selectById(String id){
         if(StringUtils.isEmpty(id)){
             return null;
         }

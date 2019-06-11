@@ -42,7 +42,7 @@ public class ${table.serviceImplName} extends ${superServiceImplClass}<${table.m
     }
 
     @Override
-    public ${entity} getById(String id){
+    public ${entity} selectById(String id){
         if(StringUtils.isEmpty(id)){
             return null;
         }

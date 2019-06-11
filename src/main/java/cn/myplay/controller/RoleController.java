@@ -1,5 +1,6 @@
 package cn.myplay.controller;
 
+import cn.myplay.util.RedisUtil;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.beans.factory.annotation.Autowired;
 import cn.myplay.common.ResultDto;
@@ -14,7 +15,7 @@ import org.springframework.stereotype.Controller;
 * </p>
 *
 * @author yangmf
-* @since 2019-06-10
+* @since 2019-06-11
 */
 
 @Controller
@@ -22,6 +23,8 @@ import org.springframework.stereotype.Controller;
 public class RoleController  {
     @Autowired
     IRoleService roleService;
+    @Autowired
+    RedisUtil redisUtil;
 
     @RequestMapping(value = "/save", method = RequestMethod.POST)
     @ResponseBody
@@ -44,10 +47,11 @@ public class RoleController  {
         return new ResultDto(res);
     }
 
-    @RequestMapping(value = "/selectById/{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "/get/{id}", method = RequestMethod.GET)
     @ResponseBody
     public ResultDto selectById(@PathVariable("id")String id){
         Role role = roleService.getById(id);
+        redisUtil.set("role",role);
         return ResultDto.dataInstance(role);
     }
 }

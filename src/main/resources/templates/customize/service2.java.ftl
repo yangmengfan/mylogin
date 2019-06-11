@@ -22,7 +22,7 @@ public interface ${table.serviceName} extends ${superServiceClass}<${entity}> {
 
     public boolean updateById(${entity} ${entity? uncap_first});
 
-    public ${entity} getById(String id);
+    public ${entity} selectById(String id);
 
     public IPage<${entity}> queryPage(Page page, ${entity} ${entity? cap_first});
 

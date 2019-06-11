@@ -16,3 +16,11 @@ spring:
         expose-session-attributes: true
         expose-spring-macro-helpers: true
         suffix: .ftl
+    redis:
+        database: 0
+# Redis服务器地址
+        host: 101.132.171.214
+# Redis服务器连接端口
+        port: 6379
+# Redis服务器连接密码（默认为空）
+        password: 987456

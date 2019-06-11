@@ -11,7 +11,7 @@ package cn.myplay.entity;
     * </p>
 *
 * @author yangmf
-* @since 2019-06-10
+* @since 2019-06-11
 */
     @Data
         @EqualsAndHashCode(callSuper = true)

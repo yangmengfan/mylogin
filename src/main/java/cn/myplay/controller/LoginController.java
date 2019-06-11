@@ -1,8 +1,10 @@
 package cn.myplay.controller;
 
 import cn.myplay.common.ResultDto;
+import cn.myplay.common.UserSession;
 import cn.myplay.entity.User;
 import cn.myplay.mapper.UserMapper;
+import cn.myplay.util.RedisUtil;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.UsernamePasswordToken;
@@ -13,6 +15,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletResponse;
+import java.util.UUID;
+
 /**
  * @Auther: ymfa
  * @Date: 2019/5/29 15:15
@@ -20,9 +26,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
  */
 @Controller
 @RequestMapping("/")
-public class PageController {
+public class LoginController {
     @Autowired
     private UserMapper userMapper;
+    @Autowired
+    RedisUtil redisUtil;
     @RequestMapping("/index")
     public String toIndex(){
         return "index";
@@ -36,7 +44,7 @@ public class PageController {
      */
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     @ResponseBody
-    public ResultDto login(String username, String password) {
+    public ResultDto login(HttpServletResponse response,String username, String password) {
         // 从SecurityUtils里边创建一个 subject
         Subject subject = SecurityUtils.getSubject();
         // 在认证提交前准备 token（令牌）
@@ -48,6 +56,10 @@ public class PageController {
         queryWrapper.eq("name",username);
         String role = userMapper.selectOne(queryWrapper).getRole();
         if ("user".equals(role)) {
+            //构建用户session
+            String sessionId = UUID.randomUUID().toString();
+            redisUtil.set(sessionId,token);
+            response.addCookie(new Cookie("token",sessionId));
             return ResultDto.success("欢迎登陆");
         }
         if ("admin".equals(role)) {

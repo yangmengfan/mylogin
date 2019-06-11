@@ -47,7 +47,7 @@ public class ${table.controllerName}  {
         return new ResultDto(res);
     }
 
-    @RequestMapping(value = "/selectById/{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "/get/{id}", method = RequestMethod.GET)
     @ResponseBody
     public ResultDto selectById(@PathVariable("id")String id){
         ${entity} ${entity? uncap_first} = ${entity? uncap_first}Service.getById(id);

@@ -29,7 +29,7 @@ public class ShiroConfig {
         //该参数可查阅文档
         //filterChainDefinitionMap.put("/guest/**", "anon");
         //用户，需要角色权限 “user”
-        filterChainDefinitionMap.put("/role/**", "roles[admin]");
+        filterChainDefinitionMap.put("/role/**", "anon");
         //管理员，需要角色权限 “admin”
         filterChainDefinitionMap.put("/user/**", "roles[user]");
         //开放登陆接口
