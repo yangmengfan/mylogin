@@ -27,7 +27,7 @@ public class ShiroConfig {
         // 设置拦截器
         Map<String, String> filterChainDefinitionMap = new LinkedHashMap<>();
         //该参数可查阅文档
-        //filterChainDefinitionMap.put("/guest/**", "anon");
+        filterChainDefinitionMap.put("//**", "anon");
         //用户，需要角色权限 “user”
         filterChainDefinitionMap.put("/role/**", "anon");
         //管理员，需要角色权限 “admin”

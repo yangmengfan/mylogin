@@ -35,6 +35,10 @@ public class LoginController {
     public String toIndex(){
         return "index";
     }
+    @RequestMapping("/loginpage")
+    public String tologin(){
+        return "login";
+    }
 
     /**
      * 登陆
