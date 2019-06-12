@@ -1,14 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-    <link href="/plugins/superadmin/css/bootstrap.min.css" rel="stylesheet">
-    <link href="/plugins/superadmin/css/form.css" rel="stylesheet">
-    <link href="/plugins/superadmin/css/style.css" rel="stylesheet">
-    <link href="/plugins/superadmin/css/animate.css" rel="stylesheet">
-    <link href="/plugins/superadmin/css/generics.css" rel="stylesheet">
-</head>
+<#include "/layout/header.ftl">
 <body id="skin-blur-violate">
 <section id="login">
     <header>
@@ -22,14 +12,14 @@
     <form class="box tile animated active" id="box-login">
         <h2 class="m-t-0 m-b-15">Login</h2>
         <input type="text" name="username" class="login-control m-b-10" placeholder="Username or Email Address">
-        <input type="password" class="login-control" placeholder="Password">
+        <input type="password" name="password" class="login-control" placeholder="Password">
         <div class="checkbox m-b-20">
             <label>
                 <input type="checkbox">
                 Remember Me
             </label>
         </div>
-        <button class="btn btn-sm m-r-5">Sign In</button>
+        <button  class="btn btn-sm m-r-5">Sign In</button>
 
         <small>
             <a class="box-switcher" data-switch="box-register" href="">Don't have an Account?</a> or
@@ -62,18 +52,5 @@
         <small><a class="box-switcher" data-switch="box-login" href="">Already have an Account?</a></small>
     </form>
 </section>
-
-<!-- Javascript Libraries -->
-<!-- jQuery -->
-<script src="/plugins/superadmin/js/jquery.min.js"></script> <!-- jQuery Library -->
-
-<!-- Bootstrap -->
-<script src="/plugins/superadmin/js/bootstrap.min.js"></script>
-
-<!--  Form Related -->
-<script src="/plugins/superadmin/js/icheck.js"></script> <!-- Custom Checkbox + Radio -->
-
-<!-- All JS functions -->
-<script src="/plugins/superadmin/js/functions.js"></script>
 </body>
-</html>
+<#include "/layout/footer.ftl">
