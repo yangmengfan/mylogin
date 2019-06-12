@@ -9,7 +9,7 @@
     <div class="clearfix"></div>
 
     <!-- Login -->
-    <form class="box tile animated active" id="box-login">
+    <form class="box tile animated active" action="//login" id="box-login">
         <h2 class="m-t-0 m-b-15">Login</h2>
         <input type="text" name="username" class="login-control m-b-10" placeholder="Username or Email Address">
         <input type="password" name="password" class="login-control" placeholder="Password">
