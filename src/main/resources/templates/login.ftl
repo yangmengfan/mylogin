@@ -9,7 +9,7 @@
     <div class="clearfix"></div>
 
     <!-- Login -->
-    <form class="box tile animated active" action="//login" id="box-login">
+    <form class="box tile animated active" method="post" action="/login" id="box-login">
         <h2 class="m-t-0 m-b-15">Login</h2>
         <input type="text" name="username" class="login-control m-b-10" placeholder="Username or Email Address">
         <input type="password" name="password" class="login-control" placeholder="Password">
@@ -19,7 +19,7 @@
                 Remember Me
             </label>
         </div>
-        <button  class="btn btn-sm m-r-5">Sign In</button>
+        <a onclick="submit()"  class="btn btn-sm m-r-5">Sign In</a>
 
         <small>
             <a class="box-switcher" data-switch="box-register" href="">Don't have an Account?</a> or
@@ -54,3 +54,41 @@
 </section>
 </body>
 <#include "/layout/footer.ftl">
+<script>
+    var superAd;
+    $(function () {
+        superAd = new superAd();
+    })
+    function submit(){
+        superAd.get("box-login").superAjax(function (res) {
+            if (res.success) {
+                window.location.href = "/index"
+            } else {
+
+            }
+        });
+    }
+
+    function superAd(){
+        this.id = "";
+        this.get = function(res){
+            this.id = res;
+            return this;
+        };
+        this.superAjax = function (callback) {
+            var data = {};
+            $.each($("#"+this.id +"> input"),function (i,obj) {
+                data[$(obj).attr("name")] = $(obj).val();
+            });
+            var method = $("#"+this.id).attr("method");
+            var url = $("#"+this.id).attr("action");
+            $.ajax({
+                url: url,
+                data: data,
+                type: "POST",
+                success: callback
+            })
+        }
+
+    }
+</script>

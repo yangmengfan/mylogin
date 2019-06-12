@@ -42,6 +42,7 @@ public class ResultDto<T> implements Serializable {
     public static ResultDto success(String message){
         ResultDto dto = new ResultDto();
         dto.setMessage(message);
+        dto.setSuccess(true);
         return dto;
     }
     public static ResultDto error(String message){

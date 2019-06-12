@@ -6,6 +6,7 @@ import cn.myproject.mapper.UserMapper;
 import cn.myproject.util.RedisUtil;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -53,7 +54,11 @@ public class LoginController {
         // 在认证提交前准备 token（令牌）
         UsernamePasswordToken token = new UsernamePasswordToken(username, password);
         // 执行认证登陆
-        subject.login(token);
+        try {
+            subject.login(token);
+        } catch (AuthenticationException e) {
+            return ResultDto.error("用户名或密码错误");
+        }
         //根据权限，指定返回数据
         QueryWrapper<User> queryWrapper = new QueryWrapper<>();
         queryWrapper.eq("name",username);
@@ -68,6 +73,6 @@ public class LoginController {
         if ("admin".equals(role)) {
             return ResultDto.success("欢迎来到管理员页面");
         }
-        return ResultDto.success("权限错误！");
+        return ResultDto.error("权限错误！");
     }
 }
