@@ -22,8 +22,14 @@ import org.springframework.stereotype.Controller;
 @Controller
 @RequestMapping("blogContent")
 public class BlogContentController extends BaseController {
+    public  final String prefix = "blog/";
     @Autowired
     IBlogContentService blogContentService;
+
+    @RequestMapping(value = "/list")
+    public String toList(){
+        return prefix+"list";
+    }
 
     @RequestMapping(value = "/save", method = RequestMethod.POST)
     @ResponseBody
@@ -53,7 +59,7 @@ public class BlogContentController extends BaseController {
         return ResultDto.dataInstance(blogContent);
     }
 
-    @RequestMapping(value = "/list", method = RequestMethod.GET)
+    @RequestMapping(value = "/listData", method = RequestMethod.GET)
     @ResponseBody
     public ResultDto queryPage(BlogContent blogContent){
         IPage blogContentList = blogContentService.queryPage(getPage(),blogContent);
