@@ -2,6 +2,7 @@ package cn.myproject.controller;
 
 import cn.myproject.common.ResultDto;
 import cn.myproject.service.IUserService;
+import com.baomidou.mybatisplus.core.metadata.IPage;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -49,5 +50,12 @@ public class UserController  {
     public ResultDto selectById(@PathVariable("id")String id){
         User user = userService.getById(id);
         return ResultDto.dataInstance(user);
+    }
+
+    @RequestMapping(value = "/querypage", method = RequestMethod.GET)
+    @ResponseBody
+    public ResultDto queryPage(User user){
+        IPage userList = userService.queryPage(null,null);
+        return ResultDto.pageInstance(userList);
     }
 }

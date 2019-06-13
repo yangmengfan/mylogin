@@ -2,13 +2,15 @@ package ${package.Controller};
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.beans.factory.annotation.Autowired;
-import cn.myplay.common.ResultDto;
+import cn.myproject.common.ResultDto;
 import org.springframework.web.bind.annotation.*;
 import ${package.Entity}.${entity};
-import cn.myplay.service.I${entity}Service;
+import cn.myproject.service.I${entity}Service;
 import org.springframework.stereotype.Controller;
 <#if superControllerClassPackage??>
 import ${superControllerClassPackage};
+import cn.myproject.common.BaseController;
+
 </#if>
 
 /**
@@ -22,7 +24,7 @@ import ${superControllerClassPackage};
 
 @Controller
 @RequestMapping("${entity? uncap_first}")
-public class ${table.controllerName}  {
+public class ${table.controllerName}  extends BaseController{
     @Autowired
     I${entity}Service ${entity? uncap_first}Service;
 
@@ -52,5 +54,12 @@ public class ${table.controllerName}  {
     public ResultDto selectById(@PathVariable("id")String id){
         ${entity} ${entity? uncap_first} = ${entity? uncap_first}Service.getById(id);
         return ResultDto.dataInstance(${entity? uncap_first});
+    }
+
+    @RequestMapping(value = "/list", method = RequestMethod.GET)
+    @ResponseBody
+    public ResultDto queryPage(${entity} ${entity? uncap_first}){
+        IPage ${entity? uncap_first}List = ${entity? uncap_first}Service.queryPage(null,null);
+        return ResultDto.pageInstance(${entity? uncap_first}List);
     }
 }

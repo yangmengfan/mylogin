@@ -5,4 +5,5 @@
     <title>Title</title>
     <link href="/plugins/superadmin/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="/plugins/bootstrap-table/bootstrap-table.css">
+
 </head>

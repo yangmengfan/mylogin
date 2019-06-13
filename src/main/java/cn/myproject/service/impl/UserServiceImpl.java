@@ -52,7 +52,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
     @Override
     public IPage<User> queryPage(Page page, User user){
         QueryWrapper<User> queryWrapper = new QueryWrapper<>();
-
+        page = new Page();
         return this.page(page, queryWrapper);
     }
 }

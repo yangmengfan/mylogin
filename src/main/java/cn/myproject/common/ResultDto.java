@@ -1,5 +1,7 @@
 package cn.myproject.common;
 
+import com.baomidou.mybatisplus.core.metadata.IPage;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -39,6 +41,18 @@ public class ResultDto<T> implements Serializable {
         }
         return dto;
     }
+    public static ResultDto pageInstance(IPage page){
+        ResultDto dto;
+        if(page == null){
+            dto = error("获取数据失败");
+        }else{
+            dto = success("获取数据成功");
+            dto.setRows(page.getRecords());
+            dto.setTotal((Integer.parseInt(new Long(page.getTotal()).toString())));
+        }
+        return dto;
+    }
+
     public static ResultDto success(String message){
         ResultDto dto = new ResultDto();
         dto.setMessage(message);
