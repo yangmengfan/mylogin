@@ -11,7 +11,10 @@
     <!-- Login -->
     <form class="box tile animated active" method="post" action="/login" id="box-login">
         <h2 class="m-t-0 m-b-15">Login</h2>
-        <input type="text" name="username" class="login-control m-b-10" placeholder="Username or Email Address">
+        <input type="text" id="username" name="username" class="login-control m-b-10" placeholder="Username or Email Address">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
         <input type="password" name="password" class="login-control" placeholder="Password">
         <div class="checkbox m-b-20">
             <label>
@@ -52,6 +55,7 @@
         <small><a class="box-switcher" data-switch="box-login" href="">Already have an Account?</a></small>
     </form>
 </section>
+
 </body>
 <#include "/layout/footer.ftl">
 <script>
@@ -61,10 +65,11 @@
     })
     function submit(){
         superAd.get("box-login").superAjax(function (res) {
+            debugger
             if (res.success) {
                 window.location.href = "/index"
             } else {
-
+                layer.tips(res.message, '#username');
             }
         });
     }

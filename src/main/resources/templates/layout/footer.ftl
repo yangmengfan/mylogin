@@ -5,11 +5,9 @@
 <!-- Bootstrap -->
 <script src="/plugins/superadmin/js/bootstrap.min.js"></script>
 
-<!--  Form Related -->
-<script src="/plugins/superadmin/js/icheck.js"></script> <!-- Custom Checkbox + Radio -->
 
-<!-- All JS functions -->
-<script src="/plugins/superadmin/js/functions.js"></script>
-
+<script src="/plugins/layer/layer.js"></script>
+<script src="/plugins/bootstrap-table/bootstrap-table.js"></script>
+<script src="/plugins/bootstrap-table/bootstrap-table-zh-CN.js"></script>
 
 </html>
