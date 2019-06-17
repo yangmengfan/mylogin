@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import cn.myproject.entity.BlogContent;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.servlet.ModelAndView;
 
 /**
 * <p>
@@ -29,6 +30,12 @@ public class BlogContentController extends BaseController {
     @RequestMapping(value = "/list")
     public String toList(){
         return prefix+"list";
+    }
+
+    @RequestMapping(value = "/get/{id}")
+    public String toDetail(@PathVariable("id")String id, ModelAndView mav){
+        mav.addObject("id",id);
+        return prefix+"detail";
     }
 
     @RequestMapping(value = "/save", method = RequestMethod.POST)
@@ -52,7 +59,7 @@ public class BlogContentController extends BaseController {
         return new ResultDto(res);
     }
 
-    @RequestMapping(value = "/get/{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "/data/{id}", method = RequestMethod.GET)
     @ResponseBody
     public ResultDto selectById(@PathVariable("id")String id){
         BlogContent blogContent = blogContentService.getById(id);

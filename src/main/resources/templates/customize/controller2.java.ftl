@@ -49,14 +49,14 @@ public class ${table.controllerName}  extends BaseController{
         return new ResultDto(res);
     }
 
-    @RequestMapping(value = "/get/{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "/data/{id}", method = RequestMethod.GET)
     @ResponseBody
     public ResultDto selectById(@PathVariable("id")String id){
         ${entity} ${entity? uncap_first} = ${entity? uncap_first}Service.getById(id);
         return ResultDto.dataInstance(${entity? uncap_first});
     }
 
-    @RequestMapping(value = "/list", method = RequestMethod.GET)
+    @RequestMapping(value = "/listData", method = RequestMethod.GET)
     @ResponseBody
     public ResultDto queryPage(${entity} ${entity? uncap_first}){
         IPage ${entity? uncap_first}List = ${entity? uncap_first}Service.queryPage(null,null);

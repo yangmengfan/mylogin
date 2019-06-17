@@ -19,14 +19,14 @@ public class BaseController {
 
     public Page getPage(){
         Page page = new Page();
-        if(request.getParameter("")!=null){
-            page.setCurrent(Long.parseLong(request.getParameter("")));
+        if(request.getParameter("pageNumber")!=null){
+            page.setCurrent(Long.parseLong(request.getParameter("pageNumber")) );
         }else{
             page.setCurrent(0);
         }
 
-        if(request.getParameter("")!=null){
-            page.setSize(Long.parseLong(request.getParameter("")));
+        if(request.getParameter("pageSize")!=null){
+            page.setSize(Long.parseLong(request.getParameter("pageSize")));
         }else{
             page.setSize(20);
         }

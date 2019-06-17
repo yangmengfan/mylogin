@@ -8,5 +8,6 @@
 
 <script src="/plugins/bootstrap-table/bootstrap-table.js"></script>
 <script src="/plugins/bootstrap-table/bootstrap-table-zh-CN.js"></script>
+<script src="/js/index.js"></script>
 
 </html>
