@@ -1,60 +1,72 @@
 <#include "/layout/header.ftl">
+<style>
+    html,
+    body {
+        height: 100%;
+    }
+
+    body {
+        display: -ms-flexbox;
+        display: -webkit-box;
+        display: flex;
+        -ms-flex-align: center;
+        -ms-flex-pack: center;
+        -webkit-box-align: center;
+        align-items: center;
+        -webkit-box-pack: center;
+        justify-content: center;
+        padding-top: 40px;
+        padding-bottom: 40px;
+        background-color: #f5f5f5;
+    }
+
+    .form-signin {
+        width: 100%;
+        max-width: 330px;
+        padding: 15px;
+        margin: 0 auto;
+    }
+    .form-signin .checkbox {
+        font-weight: 400;
+    }
+    .form-signin .form-control {
+        position: relative;
+        box-sizing: border-box;
+        height: auto;
+        padding: 10px;
+        font-size: 16px;
+    }
+    .form-signin .form-control:focus {
+        z-index: 2;
+    }
+    .form-signin input[type="email"] {
+        margin-bottom: -1px;
+        border-bottom-right-radius: 0;
+        border-bottom-left-radius: 0;
+    }
+    .form-signin input[type="password"] {
+        margin-bottom: 10px;
+        border-top-left-radius: 0;
+        border-top-right-radius: 0;
+    }
+</style>
 <body id="skin-blur-violate">
-<section id="login">
-    <header>
-        <h1>my backstage</h1>
-        <h3>create this project to learn more about computer</h3>
-    </header>
-
-    <div class="clearfix"></div>
-
-    <!-- Login -->
-    <form class="box tile animated active" method="post" action="/login" id="box-login">
-        <h2 class="m-t-0 m-b-15">Login</h2>
-        <input type="text" id="username" name="username" class="login-control m-b-10" placeholder="Username or Email Address">
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-        </button>
-        <input type="password" name="password" class="login-control" placeholder="Password">
-        <div class="checkbox m-b-20">
-            <label>
-                <input type="checkbox">
-                Remember Me
-            </label>
-        </div>
-        <a onclick="submit()"  class="btn btn-sm m-r-5">Sign In</a>
-
-        <small>
-            <a class="box-switcher" data-switch="box-register" href="">Don't have an Account?</a> or
-            <a class="box-switcher" data-switch="box-reset" href="">Forgot Password?</a>
-        </small>
-    </form>
-
-    <!-- Register -->
-    <form class="box animated tile" id="box-register">
-        <h2 class="m-t-0 m-b-15">Register</h2>
-        <input type="text" class="login-control m-b-10" placeholder="Full Name">
-        <input type="text" class="login-control m-b-10" placeholder="Username">
-        <input type="email" class="login-control m-b-10" placeholder="Email Address">
-        <input type="password" class="login-control m-b-10" placeholder="Password">
-        <input type="password" class="login-control m-b-20" placeholder="Confirm Password">
-
-        <button class="btn btn-sm m-r-5">Register</button>
-
-        <small><a class="box-switcher" data-switch="box-login" href="">Already have an Account?</a></small>
-    </form>
-
-    <!-- Forgot Password -->
-    <form class="box animated tile" id="box-reset">
-        <h2 class="m-t-0 m-b-15">Reset Password</h2>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla eu risus. Curabitur commodo lorem fringilla enim feugiat commodo sed ac lacus.</p>
-        <input type="email" class="login-control m-b-20" placeholder="Email Address">
-
-        <button class="btn btn-sm m-r-5">Reset Password</button>
-
-        <small><a class="box-switcher" data-switch="box-login" href="">Already have an Account?</a></small>
-    </form>
-</section>
+<body class="text-center">
+<form class="form-signin">
+    <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
+    <label for="name" class="sr-only">Email address</label>
+    <input type="email" id="name" name="name" class="form-control" placeholder="Email address" required autofocus>
+    <label for="password" class="sr-only">Password</label>
+    <input type="password" id="password" name="password" class="form-control" placeholder="Password" required>
+    <div class="checkbox mb-3">
+        <label>
+            <input type="checkbox" value="remember-me"> Remember me
+        </label>
+    </div>
+    <button class="btn btn-lg btn-primary btn-block" onclick="submit()">Sign in</button>
+    <p class="mt-5 mb-3 text-muted">&copy; 2017-2018</p>
+</form>
+</body>
 
 </body>
 <#include "/layout/footer.ftl">
@@ -64,7 +76,7 @@
         superAd = new superAd();
     })
     function submit(){
-        superAd.get("box-login").superAjax(function (res) {
+        superAd.get("form-signin").superAjax(function (res) {
             debugger
             if (res.success) {
                 window.location.href = "/index"

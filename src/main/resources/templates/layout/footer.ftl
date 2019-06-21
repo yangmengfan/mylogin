@@ -1,5 +1,8 @@
 <!-- Javascript Libraries -->
 <!-- jQuery -->
+
+</body>
+
 <script src="/plugins/superadmin/js/jquery.min.js"></script> <!-- jQuery Library -->
 
 <!-- Bootstrap -->

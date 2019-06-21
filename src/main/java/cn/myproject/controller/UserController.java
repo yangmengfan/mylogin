@@ -1,6 +1,8 @@
 package cn.myproject.controller;
 
+import cn.myproject.common.BaseController;
 import cn.myproject.common.ResultDto;
+import cn.myproject.entity.BlogContent;
 import cn.myproject.service.IUserService;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,9 +22,16 @@ import org.springframework.stereotype.Controller;
 
 @Controller
 @RequestMapping("user")
-public class UserController  {
+public class UserController  extends BaseController {
+    public  final String prefix = "user/";
+
     @Autowired
     IUserService userService;
+
+    @RequestMapping(value = "/list")
+    public String toList(){
+        return prefix+"list";
+    }
 
     @RequestMapping(value = "/save", method = RequestMethod.POST)
     @ResponseBody
@@ -52,10 +61,10 @@ public class UserController  {
         return ResultDto.dataInstance(user);
     }
 
-    @RequestMapping(value = "/querypage", method = RequestMethod.GET)
+    @RequestMapping(value = "/listData", method = RequestMethod.GET)
     @ResponseBody
     public ResultDto queryPage(User user){
-        IPage userList = userService.queryPage(null,null);
+        IPage userList = userService.queryPage(getPage(),user);
         return ResultDto.pageInstance(userList);
     }
 }
