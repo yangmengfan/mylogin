@@ -70,7 +70,7 @@
 
 </body>
 <#include "/layout/footer.ftl">
-<script>
+<script>0
     var superAd;
     $(function () {
         superAd = new superAd();
