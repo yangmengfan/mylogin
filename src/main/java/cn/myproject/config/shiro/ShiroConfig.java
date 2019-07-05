@@ -20,7 +20,7 @@ public class ShiroConfig {
         // 必须设置 SecurityManager
         shiroFilterFactoryBean.setSecurityManager(securityManager);
         // setLoginUrl 如果不设置值，默认会自动寻找Web工程根目录下的"/login.jsp"页面 或 "/login" 映射
-        shiroFilterFactoryBean.setLoginUrl("/notLogin");
+        shiroFilterFactoryBean.setLoginUrl("/loginpage");
         // 设置无权限时跳转的 url;
         shiroFilterFactoryBean.setUnauthorizedUrl("/user/notRole");
 
@@ -34,9 +34,11 @@ public class ShiroConfig {
         //filterChainDefinitionMap.put("/user/**", "roles[user]");
         //开放登陆接口
         filterChainDefinitionMap.put("/login", "anon");
+        filterChainDefinitionMap.put("/loginpage", "anon");
+        filterChainDefinitionMap.put("/index", "anon");
         //其余接口一律拦截
         //主要这行代码必须放在所有权限设置的最后，不然会导致所有 url 都被拦截
-        filterChainDefinitionMap.put("/**", "anon");
+        filterChainDefinitionMap.put("/**", "roles[user]");
 
         shiroFilterFactoryBean.setFilterChainDefinitionMap(filterChainDefinitionMap);
         System.out.println("Shiro拦截器工厂类注入成功");

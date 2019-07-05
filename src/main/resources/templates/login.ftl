@@ -51,8 +51,8 @@
     }
 </style>
 <body id="skin-blur-violate">
-<body class="text-center">
-<form class="form-signin">
+<body class="text-center" style="margin-top: -100px;">
+<form class="form-signin" action="/login">
     <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
     <label for="name" class="sr-only">Email address</label>
     <input type="email" id="name" name="name" class="form-control" placeholder="Email address" required autofocus>
@@ -64,7 +64,7 @@
         </label>
     </div>
     <button class="btn btn-lg btn-primary btn-block" onclick="submit()">Sign in</button>
-    <p class="mt-5 mb-3 text-muted">&copy; 2017-2018</p>
+    <p class="mt-5 mb-3 text-muted">&copy; 2018-2019</p>
 </form>
 </body>
 
